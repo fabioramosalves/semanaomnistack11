@@ -12,25 +12,32 @@ import logoImg  from '../../assets/logo.svg';
 export default function Logon(){
 
     const [id, setId] = useState('');
+    const [authorized, setAuthorized] = useState('');
     const history = useHistory();
 
     async function handleLogin(e){
         e.preventDefault();
 
-        try{
-            const response = await api.post('sessions', { id });
+        if(id !== ""){
+            try{       
+                const response = await api.post('sessions', { id });
+                const { name } = response.data;
 
-            const { name } = response.data;
-
-            localStorage.setItem('ongId', id);
-            localStorage.setItem('ongName', name);
-
-            console.log(response.data.name);
-
-            history.push('/profile');
-
-        }catch(error){
-            alert("Usuário não registrado")
+                localStorage.setItem('ongId', id);
+                localStorage.setItem('ongName', name);
+    
+                console.log(response.data.name);
+    
+                setAuthorized("");
+    
+                history.push('/profile');
+    
+            }catch(error){
+                setAuthorized("Usuário não registrado");
+            }
+        }
+        else{
+            setAuthorized("Favor Informar um ID")
         }
     }
 
@@ -46,6 +53,7 @@ export default function Logon(){
                  onChange={e => setId(e.target.value)}
                  />
                 <button className="button" type="submit">Entrar</button>
+                <div className="textAlert">{authorized}</div>
                 <Link className="back-link" to="/register">
                     <FiLogIn size={16} color="#E02141"/>
                     Não tenho cadastro

@@ -25,3 +25,9 @@
     margin-bottom: 22px;
 }
 
+.textAlert{
+    margin: 8px;
+    padding: 4px;
+    font-size: 20px;
+    color: #e02041;
+}

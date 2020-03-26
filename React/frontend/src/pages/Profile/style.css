@@ -56,6 +56,11 @@
    padding: 24px;
    border-radius: 8px;
    position: relative;
+   transition: opacity 0.3s;
+}
+
+.profile-container ul li:hover {
+  opacity: 0.7;
 }
 
 .profile-container ul button {
