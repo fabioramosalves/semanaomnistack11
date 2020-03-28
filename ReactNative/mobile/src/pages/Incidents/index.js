@@ -44,8 +44,6 @@ export default function Incidents(){
         loadIncidents();
     },[]);
 
-
-
     return (
         <View style={styles.container}>
             <View style={styles.header}>
